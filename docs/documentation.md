@@ -1,28 +1,34 @@
 # Requirements
 
-[Improve this doc](https://github.com/Xtraball/SiberianCMS-Doc/blob/master/docs/documentation.md)
+[Edit this on Github](https://github.com/Xtraball/SiberianCMS-Doc/edit/master/docs/documentation.md)
 
 ## Software
 
-* Recommended OS: `Linux`
+* Production server OS: `Linux`
 
-    * Works on `OSX` with [homebrew](http://brew.sh/), and on `Windows` with [cygwin](https://www.cygwin.com/)
+* Local development **only**:
+    
+    * `OSX` with [homebrew](http://brew.sh/)
+    
+    * `Windows` with [bash](https://docs.microsoft.com/fr-fr/windows/wsl/install-win10)
     
 * OpenSSL >=1.0.1
 
     * with TLS v1.2 support
+    
+* CURL with HTTP/2 support
 
 * [Apache](#apache) or [Nginx](#nginx)
 
 * PHP
 
-    * version: >=5.6
+    * version: `7.0 -> 7.2`
     
     * extensions: `gd`, `pdo_mysql`, `SimpleXML`, `curl`, `dom`, `SQLite3`.
     
     * functions: `exec()`
     
-    * parameters: `allow_url_fopen = On`, `memory_limit >= 128M`
+    * parameters: `allow_url_fopen = On`, `memory_limit >= 256M`
 
 * MySQL/MariaDB >=5.5 with InnoDB/XtraDB engine
 
@@ -36,9 +42,9 @@
 
 ## Configuration
 
-1. First you will need to either checkout the project `git clone https://github.com/Xtraball/SiberianCMS.git`
+1. First you will need to either checkout the project `git clone https://github.com/Xtraball/Siberian.git`
 
-    or download the [zip archive](https://github.com/Xtraball/SiberianCMS/archive/master.zip) then extract it on your webserver.
+    or download the [zip archive](https://github.com/Xtraball/Siberian/archive/master.zip) then extract it on your webserver.
 
 2. Setup your empty database and user
 
@@ -88,6 +94,17 @@ server {
 	
 	location ~ ^/app/configs {
         deny all;
+    }
+    
+    # Let's Encrypt configuration
+    location = /.well-known/check {
+        default_type "text/plain";
+        try_files $uri =404;
+    }
+
+    location ^~ /.well-known/acme-challenge/ {
+        default_type "text/plain";
+        try_files $uri =404;
     }
 
 	location / {

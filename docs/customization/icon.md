@@ -1,6 +1,6 @@
 # Icon
 
-[Improve this doc](https://github.com/Xtraball/SiberianCMS-Doc/blob/master/docs/customization/icon.md)
+[Edit this on Github](https://github.com/Xtraball/SiberianCMS-Doc/edit/master/docs/customization/icon.md)
 
 ** *Note: icon packages require Siberian 4.6.1 and above, otherwise they will not work* **
 
@@ -80,12 +80,12 @@ If you need to change options in your module while providing an update you must 
 
 ```php
 <?php
-$icons = array(
+$icons = [
     "app/local/modules/MyIconPack/resources/media/library/icon1.png",
     "app/local/modules/MyIconPack/resources/media/library/icon2.png",
     "app/local/modules/MyIconPack/resources/media/library/icon3.png",
     "app/local/modules/MyIconPack/resources/media/library/icon4.png",
-);
+];
 $result = Siberian_Feature::installIcons("MyIconPack", $icons, true);
 
 ```

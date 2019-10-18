@@ -1,6 +1,6 @@
 # User
 
-[Improve this doc](https://github.com/Xtraball/SiberianCMS-Doc/blob/master/docs/api/user.md)
+[Edit this on Github](https://github.com/Xtraball/SiberianCMS-Doc/edit/master/docs/api/user.md)
 
 ---
 
@@ -11,6 +11,8 @@
 Create a new user by providing at least an email address.
 
 ```php
+<?php
+
 $endpoint = "http://www.domain.com/admin/api_account/create"
 ```
 
@@ -45,9 +47,14 @@ lastname|string|User lastname
 {
     "success": 1,
     "user_id": 1,
-    "token": "aFef235fygd3dz3kLo98hKHfdxFguGf753f654ee"
+    "token": "aFef235fygd3dz3kLo98hKHfdxFguGf753f654ee",
+    "redirect_url": "http://www.domain.com/admin/api_account/authenticate?email=email@domain.com&token=aFef235fygd3dz3kLo98hKHfdxFguGf753f654ee"
 }
 ```
+
+Check [#Autologin](#autologin) section to use the token.
+
+---
 
 #### Error - Example
 
@@ -65,6 +72,7 @@ Param|Type|Details|Default
 success/error|int|Indicate whether there was an error during the process|1
 user_id|int|User unique identifier|
 token|string|Use to log-in to this user account
+redirect_url|string|**Available from 4.15.11** Pre-built autologin URL
 
 ---
 
@@ -75,6 +83,8 @@ token|string|Use to log-in to this user account
 Update an existing user.
 
 ```php
+<?php
+
 $endpoint = "http://www.domain.com/admin/api_account/update"
 ```
 
@@ -107,7 +117,7 @@ lastname|string|User lastname
 ```json
 {
     "success": 1,
-    "user_id": 1,
+    "user_id": 1
 }
 ```
 
@@ -136,6 +146,8 @@ user_id|int|User unique identifier|
 Check whether a user exists.
 
 ```php
+<?php
+
 $endpoint = "http://www.domain.com/admin/api_account/exist"
 ```
 
@@ -143,7 +155,7 @@ $endpoint = "http://www.domain.com/admin/api_account/exist"
 
 ```json
 {
-    "email": "email@domain.com",
+    "email": "email@domain.com"
 }
 ```
 
@@ -178,7 +190,7 @@ email *|string|User email to test whether it already exists
 Param|Type|Details|Default
 -----|----|-------|-------
 success/error|int|Indicate whether there was an error during the process|1
-exists|boolean|Indicate whether the given email aleady exist
+exists|boolean|Indicate whether the given email already exist
 
 ---
 
@@ -187,9 +199,12 @@ exists|boolean|Indicate whether the given email aleady exist
 ### Description
 
 Check whether the email/password combination is correct.
-Return a token that should be used in a HTTP redirection allowing the user to automatically log-in.
+
+Check [#Autologin](#autologin) section to use the token or use the **redirect_url**.
 
 ```php
+<?php
+
 $endpoint = "http://www.domain.com/admin/api_account/authenticate"
 ```
 
@@ -198,7 +213,7 @@ $endpoint = "http://www.domain.com/admin/api_account/authenticate"
 ```json
 {
     "email": "email@domain.com",
-    "password": "mypassword",
+    "password": "mypassword"
 }
 ```
 
@@ -216,8 +231,12 @@ password *|string|User password
 ```json
 {
     "success": 1,
+    "token": "aFef235fygd3dz3kLo98hKHfdxFguGf753f654ee",
+    "redirect_url": "http://www.domain.com/admin/api_account/authenticate?email=email@domain.com&token=aFef235fygd3dz3kLo98hKHfdxFguGf753f654ee"
 }
 ```
+
+
 
 #### Error - Example
 
@@ -233,6 +252,8 @@ password *|string|User password
 Param|Type|Details|Default
 -----|----|-------|-------
 success/error|int|Indicate whether there was an error during the process|1
+token|string|Use to log-in to this user account
+redirect_url|string|**Available from 4.15.11** Pre-built autologin URL
 
 ---
 
@@ -243,6 +264,8 @@ success/error|int|Indicate whether there was an error during the process|1
 Reset the password of a given email address and send it by email.
 
 ```php
+<?php
+
 $endpoint = "http://www.domain.com/admin/api_account/forgotpassword"
 ```
 
@@ -250,7 +273,7 @@ $endpoint = "http://www.domain.com/admin/api_account/forgotpassword"
 
 ```json
 {
-    "email": "email@domain.com",
+    "email": "email@domain.com"
 }
 ```
 
@@ -267,7 +290,7 @@ email *|string|User email
 
 ```json
 {
-    "success": 1,
+    "success": 1
 }
 ```
 
@@ -286,3 +309,19 @@ Param|Type|Details|Default
 -----|----|-------|-------
 success/error|int|Indicate whether there was an error during the process|1
 message|string|In case of error, a message is sent back by the server to provide more information|1
+
+
+## Autologin
+
+After a new user is **created** or **authenticated** via the API, you can redirect him to the auto-login page.
+
+`https://yourdomain.com/admin/api_account/autologin?email=USER_EMAIL&token=USER_TOKEN`
+
+### Request
+
+Param|Type|Details
+-----|----|-------
+email *|string|User email
+token *|string|An existing token from a previous **create** or **authenticate** API call
+
+**\* Required fields**

@@ -1,6 +1,6 @@
 # Application
 
-[Improve this doc](https://github.com/Xtraball/SiberianCMS-Doc/blob/master/docs/api/application.md)
+[Edit this on Github](https://github.com/Xtraball/SiberianCMS-Doc/edit/master/docs/api/application.md)
 
 ---
 
@@ -11,6 +11,8 @@
 Create a new application by providing at least a name and a user identifier.
 
 ```php
+<?php
+
 $endpoint = "http://www.domain.com/application/api/create"
 ```
 
@@ -74,6 +76,8 @@ app_url|string|URL of the application
 Update an existing user.
 
 ```php
+<?php
+
 $endpoint = "http://www.domain.com/application/api/update"
 ```
 
@@ -140,6 +144,8 @@ app_url|string|URL of the application
 Allows an existing user to manage an application.
 
 ```php
+<?php
+
 $endpoint = "http://www.domain.com/application/api_admin/add"
 ```
 
@@ -148,7 +154,7 @@ $endpoint = "http://www.domain.com/application/api_admin/add"
 ```json
 {
     "app_id": "1",
-    "user_id": "1",
+    "user_id": "1"
 }
 ```
 
@@ -165,7 +171,7 @@ admin_id *|int|User identifier
 
 ```json
 {
-    "success": 1,
+    "success": 1
 }
 ```
 
@@ -193,6 +199,8 @@ success/error|int|Indicate whether there was an error during the process|1
 Denies an existing user to manage an application.
 
 ```php
+<?php
+
 $endpoint = "http://www.domain.com/application/api_admin/remove"
 ```
 
@@ -201,7 +209,7 @@ $endpoint = "http://www.domain.com/application/api_admin/remove"
 ```json
 {
     "app_id": "1",
-    "user_id": "1",
+    "user_id": "1"
 }
 ```
 
@@ -218,7 +226,7 @@ admin_id *|int|User identifier
 
 ```json
 {
-    "success": 1,
+    "success": 1
 }
 ```
 

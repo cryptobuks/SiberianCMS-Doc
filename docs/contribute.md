@@ -1,6 +1,6 @@
 ## Contribute To SiberianCMS
 
-[Improve this doc](https://github.com/Xtraball/SiberianCMS-Doc/blob/master/docs/contribute.md)
+[Edit this on Github](https://github.com/Xtraball/SiberianCMS-Doc/edit/master/docs/contribute.md)
 
 Anyone can contribute to SiberianCMS. And we need your contributions.
 
@@ -9,7 +9,7 @@ There are multiple ways to contribute: [report bugs](#submit-an-issue), [improve
 ## Submit An Issue
 
 1. Search into existing issues before submitting yours
-2. Fork our Github repo: `https://github.com/Xtraball/SiberianCMS.git`
+2. Fork our Github repo: `https://github.com/Xtraball/Siberian.git`
 3. Create a new branch from master
     
     - Issue `git checkout -b issueid-shortdescription`

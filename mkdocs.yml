@@ -1,27 +1,44 @@
 site_name: SiberianCMS Documentation
-pages:
+nav:
   - Home: index.md
   - Getting started: documentation.md
   - Customization:
     - 'Layouts': 'layout.md'
+    - 'Templates': 'customization/template.md'
     - 'Icons': 'customization/icon.md'
   - Modules:
     - 'Structure & Basics': 'module.md'
     - 'Basic usage': 'module/basic.md'
     - 'Hooks': 'module/hooks.md'
+    - 'My account': 'module/account.md'
     - 'Forms': 'module/forms.md'
     - 'Offline Mode': 'module/offline-mode.md'
     - 'Utils': 'module/utils.md'
+    - 'Security': 'module/security.md'
     - 'Core inheritance': 'module/core-inheritance.md'
+    - 'Siberian CLI': 'cli/siberian.md'
   - Stack:
     - 'Ionic tools': 'stack/ionic-tools.md'
+    - 'Utilities': 'stack/utilities.md'
     - 'Frameworks': 'stack/frameworks.md'
   - API:
     - 'Introduction': 'api.md'
     - 'Application': 'api/application.md'
     - 'User': 'api/user.md'
+    - 'Backoffice': 'api/backoffice.md'
+    - 'Push': 'api/push.md'
   - Contribute: contribute.md
-theme_dir: themes/xtraball
+  - 'HiddenNav':
+    - 'Customer': 'module/hooks/customer.md'
+    - 'App': 'module/hooks/app.md'
+    - 'Loyaty Card': 'module/hooks/loyalty-card.md'
+    - 'Menus': 'module/hooks/menus.md'
+theme:
+  name: null
+  custom_dir: 'themes/xtraball/'
+plugins:
+  - 'search'
 site_dir: siberiancms
-repo_url: https://github.com/Xtraball/SiberianCMS/
+repo_url: https://github.com/Xtraball/Siberian
+repo_name: GitHub
 google_analytics: ['UA-90544135-3', 'auto']
